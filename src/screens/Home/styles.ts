@@ -6,4 +6,7 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const Title = styled.Text``;
+export const Title = styled.Text`
+  font-family: ${({theme}) => theme.fonts.TITLE};
+  font-size: 24px;
+`;
