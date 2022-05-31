@@ -18,11 +18,12 @@ const SignIn: React.FC = () => {
         <Styled.Brand source={LogoImage} />
         <Styled.Title>Login</Styled.Title>
 
-        <SignInInputs placeholder="E-mail" />
+        <SignInInputs placeholder="E-mail" maxLength={37} />
         <PasswordInput
           placeholder="Password"
           showPassword={showPassword}
           onPressPassword={handleShowPassword}
+          maxLength={30}
         />
       </Styled.Content>
     </Styled.Container>
