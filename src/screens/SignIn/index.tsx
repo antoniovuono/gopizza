@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {KeyboardAvoidingView, Platform} from 'react-native';
 import LogoImage from '@assets/images/brand.png';
 
 import * as Styled from './styles';
@@ -15,26 +16,29 @@ const SignIn: React.FC = () => {
 
   return (
     <Styled.Container>
-      <Styled.Content>
-        <Styled.Brand source={LogoImage} />
-        <Styled.Title>Login</Styled.Title>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <Styled.Content>
+          <Styled.Brand source={LogoImage} />
+          <Styled.Title>Login</Styled.Title>
 
-        <SignInInputs
-          placeholder="E-mail"
-          maxLength={37}
-          keyboardType="email-address"
-        />
-        <PasswordInput
-          placeholder="Password"
-          showPassword={showPassword}
-          onPressPassword={handleShowPassword}
-          maxLength={30}
-        />
+          <SignInInputs
+            placeholder="E-mail"
+            maxLength={37}
+            keyboardType="email-address"
+          />
+          <PasswordInput
+            placeholder="Password"
+            showPassword={showPassword}
+            onPressPassword={handleShowPassword}
+            maxLength={30}
+          />
 
-        <Styled.ForgotPassword>Esqueci minha senha</Styled.ForgotPassword>
+          <Styled.ForgotPassword>Esqueci minha senha</Styled.ForgotPassword>
 
-        <Button type="primary" title="Entrar" />
-      </Styled.Content>
+          <Button type="primary" title="Entrar" />
+        </Styled.Content>
+      </KeyboardAvoidingView>
     </Styled.Container>
   );
 };

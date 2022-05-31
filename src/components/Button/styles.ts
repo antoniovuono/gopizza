@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-interface IButtonProps {
+export interface IButtonProps {
   type: 'primary' | 'secondary';
 }
 
