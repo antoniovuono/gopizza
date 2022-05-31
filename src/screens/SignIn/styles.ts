@@ -37,3 +37,10 @@ export const Title = styled.Text`
   color: ${({theme}) => theme.colors.TITLE};
   margin-bottom: 23px;
 `;
+
+export const ForgotPassword = styled.Text`
+  text-align: right;
+  color: ${({theme}) => theme.colors.TITLE};
+  font-family: ${({theme}) => theme.fonts.TEXT};
+  margin-top: 5px;
+`;
