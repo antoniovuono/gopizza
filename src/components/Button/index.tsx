@@ -8,7 +8,7 @@ interface IButton {
 
 const Button: React.FC<IButton> = ({type, title, ...rest}) => {
   return (
-    <Styled.Container type={type} activeOpacity={0.7} {...rest}>
+    <Styled.Container type={type} activeOpacity={0.5} {...rest}>
       <Styled.Title>{title}</Styled.Title>
     </Styled.Container>
   );
