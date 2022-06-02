@@ -4,6 +4,7 @@ import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
   flex: 1;
+  background-color: ${({theme}) => theme.colors.BACKGROUND};
 `;
 
 export const Header = styled(LinearGradient).attrs(({theme}) => ({
@@ -37,4 +38,21 @@ export const Grettings = styled.Text`
 
 export const LogoutButton = styled.TouchableOpacity`
   margin-top: 15px;
+`;
+
+export const SearchContainer = styled.View`
+  flex-direction: row;
+  padding: 0 22px;
+  width: 100%;
+  position: absolute;
+  top: 100px;
+`;
+
+export const InputConent = styled.View`
+  width: 80%;
+`;
+
+export const SearchButtonContent = styled.View`
+  width: 20%;
+  padding: 0 7px;
 `;

@@ -2,6 +2,8 @@ import React from 'react';
 import EmojiIcon from '@assets/icons/emoji.svg';
 import LogoutIcon from '@assets/icons/logout.svg';
 import * as Styled from './styles';
+import SearchInput from '@components/Search/SearchInput';
+import SearchButton from '@components/Search/SearchButton';
 
 const DashboardAdmin: React.FC = () => {
   return (
@@ -16,6 +18,16 @@ const DashboardAdmin: React.FC = () => {
           <LogoutIcon />
         </Styled.LogoutButton>
       </Styled.Header>
+
+      <Styled.SearchContainer>
+        <Styled.InputConent>
+          <SearchInput />
+        </Styled.InputConent>
+
+        <Styled.SearchButtonContent>
+          <SearchButton />
+        </Styled.SearchButtonContent>
+      </Styled.SearchContainer>
     </Styled.Container>
   );
 };
