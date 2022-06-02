@@ -14,6 +14,4 @@ export const SearchInputText = styled.TextInput`
   width: 90%;
 `;
 
-export const ClearInputButton = styled.TouchableOpacity`
-  margin-right: 10px;
-`;
+export const ClearInputButton = styled.TouchableOpacity``;
