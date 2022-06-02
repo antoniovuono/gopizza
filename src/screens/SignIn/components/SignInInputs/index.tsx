@@ -3,9 +3,7 @@ import {TextInputProps} from 'react-native';
 
 import * as Styled from './styles';
 
-interface InputProps extends TextInputProps {
-  show_password?: () => void;
-}
+interface InputProps extends TextInputProps {}
 
 const SignInInputs: React.FC<InputProps> = ({...rest}) => {
   return (
