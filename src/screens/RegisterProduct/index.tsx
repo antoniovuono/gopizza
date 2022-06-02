@@ -7,6 +7,15 @@ const RegisterProduct: React.FC = () => {
   return (
     <Styled.Container>
       <Header title="Cadastrar" deleteButton="Deletar" showGoBack showDelete />
+
+      <Styled.FormContent>
+        <Styled.ImportPhotoContainer>
+          <Styled.ImportPhotoContent />
+          <Styled.UplodadButton>
+            <Styled.UploadTitle>Carregar</Styled.UploadTitle>
+          </Styled.UplodadButton>
+        </Styled.ImportPhotoContainer>
+      </Styled.FormContent>
     </Styled.Container>
   );
 };
