@@ -1,4 +1,4 @@
-import DashboardAdmin from '@screens/DashboardAdmin';
+import Home from '@screens/Home';
 import React from 'react';
 import {ThemeProvider} from 'styled-components';
 import theme from './src/global/theme';
@@ -7,7 +7,7 @@ import theme from './src/global/theme';
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <DashboardAdmin />
+      <Home />
     </ThemeProvider>
   );
 };

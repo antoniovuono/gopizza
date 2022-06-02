@@ -6,7 +6,7 @@ import * as Styled from './styles';
 
 const SearchButton: React.FC<TouchableOpacityProps> = ({...rest}) => {
   return (
-    <Styled.Container {...rest}>
+    <Styled.Container {...rest} activeOpacity={0.7}>
       <SearchIcon />
     </Styled.Container>
   );

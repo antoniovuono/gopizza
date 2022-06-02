@@ -5,7 +5,7 @@ import * as Styled from './styles';
 import SearchInput from '@components/Search/SearchInput';
 import SearchButton from '@components/Search/SearchButton';
 
-const DashboardAdmin: React.FC = () => {
+const Home: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleClearSearchInput = () => {
@@ -42,4 +42,4 @@ const DashboardAdmin: React.FC = () => {
   );
 };
 
-export default DashboardAdmin;
+export default Home;
