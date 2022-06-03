@@ -1,5 +1,6 @@
 import Header from '@components/Header';
 import React from 'react';
+import UploadPhoto from './components/UploadPhoto';
 
 import * as Styled from './styles';
 
@@ -10,7 +11,8 @@ const RegisterProduct: React.FC = () => {
 
       <Styled.FormContent>
         <Styled.ImportPhotoContainer>
-          <Styled.ImportPhotoContent />
+          <UploadPhoto uri={''} />
+
           <Styled.UplodadButton>
             <Styled.UploadTitle>Carregar</Styled.UploadTitle>
           </Styled.UplodadButton>

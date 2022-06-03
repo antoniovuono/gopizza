@@ -1,5 +1,5 @@
 import {ScrollView} from 'react-native';
-import styled from 'styled-components/native';
+import styled, {css} from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -13,10 +13,23 @@ export const FormContent = styled(ScrollView).attrs({
   width: 100%;
 `;
 
-export const ImportPhotoContainer = styled.View``;
+export const ImportPhotoContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 32px 45px;
+  justify-content: space-between;
+`;
 
-export const ImportPhotoContent = styled.View``;
+export const UplodadButton = styled.TouchableOpacity`
+  background-color: ${({theme}) => theme.colors.PRIMARY_800};
+  padding: 16px;
+  border-radius: 12px;
+`;
 
-export const UplodadButton = styled.TouchableOpacity``;
-
-export const UploadTitle = styled.Text``;
+export const UploadTitle = styled.Text`
+  font-size: 14px;
+  ${({theme}) => css`
+    font-family: ${theme.fonts.TEXT};
+    color: ${theme.colors.TITLE};
+  `}
+`;
