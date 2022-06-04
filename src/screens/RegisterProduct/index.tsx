@@ -17,6 +17,41 @@ const RegisterProduct: React.FC = () => {
             <Styled.UploadTitle>Carregar</Styled.UploadTitle>
           </Styled.UplodadButton>
         </Styled.ImportPhotoContainer>
+
+        <Styled.Form>
+          <Styled.InputTitle>Nome</Styled.InputTitle>
+          <Styled.InputName />
+
+          <Styled.DescriptionLabelContent>
+            <Styled.InputTitle>Descrição</Styled.InputTitle>
+            <Styled.MaxCharacters>Max 60 caracteres</Styled.MaxCharacters>
+          </Styled.DescriptionLabelContent>
+
+          <Styled.InputDescription multiline maxLength={60} />
+
+          <Styled.InputTitle>Tamanhos e preços</Styled.InputTitle>
+
+          <Styled.PriceInputContent>
+            <Styled.ProductSizeContent>
+              <Styled.ProductSizeLabel>P</Styled.ProductSizeLabel>
+            </Styled.ProductSizeContent>
+            <Styled.PriceInput placeholder="R$" keyboardType="numeric" />
+          </Styled.PriceInputContent>
+
+          <Styled.PriceInputContent>
+            <Styled.ProductSizeContent>
+              <Styled.ProductSizeLabel>M</Styled.ProductSizeLabel>
+            </Styled.ProductSizeContent>
+            <Styled.PriceInput placeholder="R$" keyboardType="numeric" />
+          </Styled.PriceInputContent>
+
+          <Styled.PriceInputContent>
+            <Styled.ProductSizeContent>
+              <Styled.ProductSizeLabel>G</Styled.ProductSizeLabel>
+            </Styled.ProductSizeContent>
+            <Styled.PriceInput placeholder="R$" keyboardType="numeric" />
+          </Styled.PriceInputContent>
+        </Styled.Form>
       </Styled.FormContent>
     </Styled.Container>
   );
