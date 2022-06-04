@@ -1,4 +1,5 @@
 import {ScrollView, TextInput} from 'react-native';
+import {getBottomSpace} from 'react-native-iphone-x-helper';
 import styled, {css} from 'styled-components/native';
 
 export const Container = styled.View`
@@ -152,4 +153,9 @@ export const PriceInput = styled(TextInput).attrs(({theme}) => ({
       font-family: ${theme.fonts.TEXT};
       color: ${theme.colors.SECONDARY_900};
     `}
+`;
+
+export const ButtonContent = styled.View`
+  width: 100%;
+  margin-bottom: ${getBottomSpace() + 10}px;
 `;

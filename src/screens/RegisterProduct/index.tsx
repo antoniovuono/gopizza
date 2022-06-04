@@ -1,3 +1,4 @@
+import Button from '@components/Button';
 import Header from '@components/Header';
 import React from 'react';
 import UploadPhoto from './components/UploadPhoto';
@@ -51,6 +52,10 @@ const RegisterProduct: React.FC = () => {
             </Styled.ProductSizeContent>
             <Styled.PriceInput placeholder="R$" keyboardType="numeric" />
           </Styled.PriceInputContent>
+
+          <Styled.ButtonContent>
+            <Button type="secondary" title="Cadastrar pizza" />
+          </Styled.ButtonContent>
         </Styled.Form>
       </Styled.FormContent>
     </Styled.Container>
