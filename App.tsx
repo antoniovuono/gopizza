@@ -1,8 +1,11 @@
 import React from 'react';
 import {ThemeProvider} from 'styled-components';
 import theme from './src/global/theme';
-import RegisterProduct from '@screens/RegisterProduct';
+// import RegisterProduct from '@screens/RegisterProduct';
+import Toast from 'react-native-toast-message';
 import {StatusBar} from 'react-native';
+import SignIn from '@screens/SignIn';
+import {AuthProvider} from '@hooks/auth';
 
 const App: React.FC = () => {
   return (
@@ -13,7 +16,10 @@ const App: React.FC = () => {
         translucent
       />
 
-      <RegisterProduct />
+      <AuthProvider>
+        <SignIn />
+        <Toast />
+      </AuthProvider>
     </ThemeProvider>
   );
 };

@@ -1,10 +1,11 @@
+import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
 export interface IButtonProps {
   type: 'primary' | 'secondary';
 }
 
-export const Container = styled.TouchableOpacity<IButtonProps>`
+export const Container = styled(TouchableOpacity)<IButtonProps>`
   width: 100%;
   background-color: ${({theme, type}) =>
     type === 'primary' ? theme.colors.PRIMARY_800 : theme.colors.SUCCESS_900};
@@ -19,3 +20,7 @@ export const Title = styled.Text`
   color: ${({theme}) => theme.colors.TITLE};
   font-family: ${({theme}) => theme.fonts.TEXT};
 `;
+
+export const Loader = styled.ActivityIndicator.attrs(({theme}) => ({
+  color: theme.colors.TITLE,
+}))``;
