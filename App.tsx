@@ -3,7 +3,7 @@ import { DMSerifDisplay_400Regular } from "@expo-google-fonts/dm-serif-display";
 import theme from "@styles/theme";
 import React from "react";
 import { View } from "react-native";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components/native";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
