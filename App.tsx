@@ -1,9 +1,9 @@
 import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
 import { DMSerifDisplay_400Regular } from "@expo-google-fonts/dm-serif-display";
-import theme from "@styles/theme";
+import { SignIn } from "@screens/SignIn";
+import theme from "@styles/theme/theme";
 import React from "react";
-import { View } from "react-native";
-import { ThemeProvider } from "styled-components/native";
+import { ThemeProvider } from "styled-components";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -17,7 +17,7 @@ export default function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <View></View>
+            <SignIn />
         </ThemeProvider>
     );
 }
