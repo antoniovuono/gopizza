@@ -5,8 +5,9 @@
     "paths": {
         "@screens/*": ["./src/screens/*"],
         "@components/*": ["./src/components/*"],
+        "@hooks/*": ["./src/hooks/*"],
         "@assets/*": ["./src/assets/*"],
-        "@styles/*": ["./src/styles/*"]
+        "@styles/*": ["./src/styles/*"],
     }
   },
   "extends": "expo/tsconfig.base"
