@@ -388,6 +388,8 @@ PODS:
   - RNFBApp (17.4.2):
     - Firebase/CoreOnly (= 10.7.0)
     - React-Core
+  - RNGestureHandler (2.9.0):
+    - React-Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -436,6 +438,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -535,6 +538,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -589,6 +594,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 8692ac548bec648fa121980ccb4304afd136d584
   ReactCommon: 0982e4657e0ecdc3a90858fbb529d54cd0be8fb4
   RNFBApp: 55dbfc574e5ae414f2984394934f79f87eb4b050
+  RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
 
 PODFILE CHECKSUM: 788dd18fdf68938613ea54ecc06aef01394261c0

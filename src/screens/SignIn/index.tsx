@@ -1,3 +1,4 @@
+import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import React from "react";
 
@@ -20,6 +21,8 @@ export const SignIn = () => {
                 autoCapitalize="none"
                 secureTextEntry
             />
+
+            <Button type="secondary" title="Entrar" isLoading={false} />
         </Container>
     );
 };
