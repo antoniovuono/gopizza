@@ -1,6 +1,11 @@
+import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled(LinearGradient).attrs(({ theme }) => ({
+    colors: theme.COLORS.GRADIENT,
+    start: { x: 0, y: 1 },
+    end: { x: 0.5, y: 0.5 },
+}))`
     flex: 1;
-    background-color: ${({ theme }) => theme.COLORS.PRIMARY_900};
+    justify-content: center;
 `;
