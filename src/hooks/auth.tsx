@@ -1,6 +1,13 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
-import React, { ReactNode, createContext, useContext, useState } from "react";
+import React, {
+    ReactNode,
+    createContext,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
 import { Alert } from "react-native";
 
 type UserProps = {
@@ -18,6 +25,8 @@ type AuthContextData = {
 type AuthProviderProps = {
     children: ReactNode;
 };
+
+const USER_COLLECTION = "@gopizza:users";
 
 export const AuthContext = createContext<AuthContextData>(
     {} as AuthContextData
@@ -41,7 +50,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
                     .collection("users")
                     .doc(account.user.uid)
                     .get()
-                    .then((profile) => {
+                    .then(async (profile) => {
                         const { name, isAdmin } = profile.data() as UserProps;
 
                         if (profile.exists) {
@@ -50,7 +59,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
                                 name,
                                 isAdmin,
                             };
-                            console.log(userData);
+
+                            await AsyncStorage.setItem(
+                                USER_COLLECTION,
+                                JSON.stringify(userData)
+                            );
                             setUser(userData);
                         }
                     })
@@ -78,6 +91,23 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
             })
             .finally(() => setIsLogging(false));
     };
+
+    const loadUserStorageData = async () => {
+        setIsLogging(true);
+
+        const storedUser = await AsyncStorage.getItem(USER_COLLECTION);
+
+        if (storedUser) {
+            const userData = JSON.parse(storedUser) as UserProps;
+            setUser(userData);
+        }
+
+        setIsLogging(false);
+    };
+
+    useEffect(() => {
+        loadUserStorageData();
+    }, []);
 
     return (
         <AuthContext.Provider value={{ signIn, isLogging, user }}>
