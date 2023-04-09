@@ -1,10 +1,18 @@
 import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
 import React, { ReactNode, createContext, useContext, useState } from "react";
 import { Alert } from "react-native";
+
+type UserProps = {
+    id: string;
+    name: string;
+    isAdmin: boolean;
+};
 
 type AuthContextData = {
     signIn: (email: string, password: string) => Promise<void>;
     isLogging: boolean;
+    user: UserProps | null;
 };
 
 type AuthProviderProps = {
@@ -17,6 +25,7 @@ export const AuthContext = createContext<AuthContextData>(
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
     const [isLogging, setIsLogging] = useState(false);
+    const [user, setUser] = useState<UserProps | null>(null);
 
     const signIn = async (email: string, password: string) => {
         if (!email || !password) {
@@ -28,7 +37,29 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         auth()
             .signInWithEmailAndPassword(email, password)
             .then((account) => {
-                console.log(account);
+                firestore()
+                    .collection("users")
+                    .doc(account.user.uid)
+                    .get()
+                    .then((profile) => {
+                        const { name, isAdmin } = profile.data() as UserProps;
+
+                        if (profile.exists) {
+                            const userData = {
+                                id: account.user.uid,
+                                name,
+                                isAdmin,
+                            };
+                            console.log(userData);
+                            setUser(userData);
+                        }
+                    })
+                    .catch(() =>
+                        Alert.alert(
+                            "Login",
+                            "Não foi possível buscar os dados do usuário"
+                        )
+                    );
             })
             .catch((error) => {
                 const { code } = error;
@@ -49,7 +80,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     };
 
     return (
-        <AuthContext.Provider value={{ signIn, isLogging }}>
+        <AuthContext.Provider value={{ signIn, isLogging, user }}>
             {children}
         </AuthContext.Provider>
     );
