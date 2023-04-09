@@ -20,6 +20,7 @@ type AuthContextData = {
     signIn: (email: string, password: string) => Promise<void>;
     isLogging: boolean;
     user: UserProps | null;
+    signOut: () => Promise<void>;
 };
 
 type AuthProviderProps = {
@@ -105,12 +106,18 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         setIsLogging(false);
     };
 
+    const signOut = async () => {
+        await auth().signOut();
+        await AsyncStorage.removeItem(USER_COLLECTION);
+        setUser(null);
+    };
+
     useEffect(() => {
         loadUserStorageData();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ signIn, isLogging, user }}>
+        <AuthContext.Provider value={{ signIn, isLogging, user, signOut }}>
             {children}
         </AuthContext.Provider>
     );
