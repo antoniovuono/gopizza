@@ -1,4 +1,5 @@
 import { ButtonBack } from "@components/ButtonBack";
+import { Photo } from "@components/Photo";
 import React from "react";
 import { Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -17,6 +18,8 @@ export const Product = () => {
                     <DeleteLabel>Deletar</DeleteLabel>
                 </TouchableOpacity>
             </Header>
+
+            <Photo uri="https://github.com/antoniovuono.png" />
         </Container>
     );
 };
