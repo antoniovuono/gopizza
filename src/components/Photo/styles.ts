@@ -35,8 +35,3 @@ export const Upload = styled.View`
     align-items: center;
     margin: 32px 0;
 `;
-
-export const PickImageButton = styled(Button)`
-    max-width: 90px;
-    margin-left: 32px;
-`;

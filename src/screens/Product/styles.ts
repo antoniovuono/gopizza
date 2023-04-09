@@ -36,3 +36,22 @@ export const DeleteLabel = styled.Text`
         color: ${theme.COLORS.TITLE};
     `}
 `;
+
+export const PickImageButton = styled.TouchableOpacity`
+    margin-left: 32px;
+    width: 90px;
+    height: 56px;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ theme }) => theme.COLORS.PRIMARY_800};
+`;
+
+export const PickImageLabel = styled.Text`
+    font-size: 14px;
+
+    ${({ theme }) => css`
+        color: ${theme.COLORS.TITLE};
+        font-family: ${theme.FONTS.TEXT};
+    `}
+`;
