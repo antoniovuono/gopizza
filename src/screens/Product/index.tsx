@@ -1,5 +1,6 @@
 import { ButtonBack } from "@components/ButtonBack";
 import { Photo } from "@components/Photo";
+import { PickImageButton, Upload } from "@components/Photo/styles";
 import React from "react";
 import { Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -19,7 +20,10 @@ export const Product = () => {
                 </TouchableOpacity>
             </Header>
 
-            <Photo uri="https://github.com/antoniovuono.png" />
+            <Upload>
+                <Photo uri="" />
+                <PickImageButton title="Carregar" type="secondary" />
+            </Upload>
         </Container>
     );
 };
