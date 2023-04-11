@@ -1,9 +1,7 @@
 import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
 import { DMSerifDisplay_400Regular } from "@expo-google-fonts/dm-serif-display";
 import { AuthProvider } from "@hooks/auth";
-import { Home } from "@screens/Home";
-import { Product } from "@screens/Product";
-import { SignIn } from "@screens/SignIn";
+import { Routes } from "@routes/index";
 import theme from "@styles/theme/theme";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
@@ -27,7 +25,7 @@ export default function App() {
                 style="light"
             />
             <AuthProvider>
-                <Home />
+                <Routes />
             </AuthProvider>
         </ThemeProvider>
     );
