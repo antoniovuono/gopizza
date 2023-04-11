@@ -6,10 +6,12 @@ import { Photo } from "@components/Photo";
 import { Upload } from "@components/Photo/styles";
 import firestore from "@react-native-firebase/firestore";
 import storage from "@react-native-firebase/storage";
+import { useRoute } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import React, { useState } from "react";
 import { Alert, Platform, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { ProductNavigationProps } from "src/@types/navigation";
 
 import {
     Container,
@@ -33,6 +35,11 @@ export const Product = () => {
     const [priceSizeM, setPriceSizeM] = useState("");
     const [priceSizeG, setPriceSizeG] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const route = useRoute();
+    const { id } = route.params as ProductNavigationProps;
+
+    console.log("producto carregado", id);
 
     const handlePickerImage = async () => {
         const { status } =
