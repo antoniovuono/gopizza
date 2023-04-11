@@ -4,11 +4,12 @@ import { Input } from "@components/Input";
 import { InputPrice } from "@components/InputPrice";
 import { Photo } from "@components/Photo";
 import { Upload } from "@components/Photo/styles";
+import { ProductProps } from "@components/ProductCard";
 import firestore from "@react-native-firebase/firestore";
 import storage from "@react-native-firebase/storage";
 import { useRoute } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Platform, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ProductNavigationProps } from "src/@types/navigation";
@@ -27,6 +28,15 @@ import {
     MaxCharacters,
 } from "./styles";
 
+type PizzaResponse = ProductProps & {
+    photo_path: string;
+    prices_sizes: {
+        p: string;
+        m: string;
+        g: string;
+    };
+};
+
 export const Product = () => {
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
@@ -35,11 +45,10 @@ export const Product = () => {
     const [priceSizeM, setPriceSizeM] = useState("");
     const [priceSizeG, setPriceSizeG] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [photoPath, setPhotoPath] = useState("");
 
     const route = useRoute();
     const { id } = route.params as ProductNavigationProps;
-
-    console.log("producto carregado", id);
 
     const handlePickerImage = async () => {
         const { status } =
@@ -117,6 +126,26 @@ export const Product = () => {
 
         setIsLoading(false);
     };
+
+    useEffect(() => {
+        if (id) {
+            firestore()
+                .collection("pizzas")
+                .doc(id)
+                .get()
+                .then((response) => {
+                    const product = response.data() as PizzaResponse;
+
+                    setImage(product.photo_url);
+                    setName(product.name);
+                    setDescription(product.description);
+                    setPriceSizeP(product.prices_sizes.p);
+                    setPriceSizeM(product.prices_sizes.m);
+                    setPriceSizeG(product.prices_sizes.g);
+                    setPhotoPath(product.photo_path);
+                });
+        }
+    }, [id]);
 
     return (
         <Container behavior={Platform.OS === "ios" ? "padding" : undefined}>
