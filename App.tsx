@@ -1,6 +1,7 @@
 import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
 import { DMSerifDisplay_400Regular } from "@expo-google-fonts/dm-serif-display";
 import { AuthProvider } from "@hooks/auth";
+import { Home } from "@screens/Home";
 import { Product } from "@screens/Product";
 import { SignIn } from "@screens/SignIn";
 import theme from "@styles/theme/theme";
@@ -26,7 +27,7 @@ export default function App() {
                 style="light"
             />
             <AuthProvider>
-                <Product />
+                <Home />
             </AuthProvider>
         </ThemeProvider>
     );
