@@ -24,7 +24,6 @@ export type ProductProps = {
 type Props = RectButtonProps & {
     data: ProductProps;
 };
-
 export const ProductCard = ({ data, ...rest }: Props) => {
     const { COLORS } = useTheme();
 

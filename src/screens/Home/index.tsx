@@ -1,8 +1,9 @@
-import { ProductCard } from "@components/ProductCard";
+import { ProductCard, ProductProps } from "@components/ProductCard";
 import { Search } from "@components/Search";
 import { MaterialIcons } from "@expo/vector-icons";
-import React from "react";
-import { TouchableOpacity } from "react-native";
+import firestore from "@react-native-firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { Alert, TouchableOpacity, FlatList } from "react-native";
 import { useTheme } from "styled-components";
 
 import {
@@ -18,7 +19,42 @@ import {
 import happyEmoji from "../../assets/happy.png";
 
 export const Home = () => {
+    const [pizzas, setPizzas] = useState<ProductProps[]>([]);
+
     const { COLORS } = useTheme();
+
+    const fetchPizzas = (value: string) => {
+        const formattedValue = value.toLocaleLowerCase().trim();
+
+        // Buscamos os dados das pizzas no firestore retornando
+        // Por ordem alfabética.
+        firestore()
+            .collection("pizzas")
+            .orderBy("name_insensitive")
+            .startAt(formattedValue)
+            .endAt(`${formattedValue}\uf8ff`)
+            .get()
+            .then((resposne) => {
+                const data = resposne.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        ...doc.data(),
+                    };
+                }) as ProductProps[];
+
+                setPizzas(data);
+            })
+            .catch(() =>
+                Alert.alert(
+                    "Consulta",
+                    "Não foi possível realizar a consulta das pizzas "
+                )
+            );
+    };
+
+    useEffect(() => {
+        fetchPizzas("");
+    }, []);
 
     return (
         <Container>
@@ -45,13 +81,15 @@ export const Home = () => {
                 <MenuItemsNumber>32 pizzas</MenuItemsNumber>
             </MenuHeader>
 
-            <ProductCard
-                data={{
-                    id: "1",
-                    name: "Pizza",
-                    description:
-                        "Mussarlea, manjericão fresco, parmesão e tomate cereja.",
-                    photo_url: "https://github.com/antoniovuono.png",
+            <FlatList
+                data={pizzas}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => <ProductCard data={item} />}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                    paddingTop: 20,
+                    paddingBottom: 12,
+                    marginHorizontal: 24,
                 }}
             />
         </Container>
