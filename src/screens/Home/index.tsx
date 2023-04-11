@@ -1,3 +1,4 @@
+import { Search } from "@components/Search";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { TouchableOpacity } from "react-native";
@@ -32,6 +33,8 @@ export const Home = () => {
                     />
                 </TouchableOpacity>
             </Header>
+
+            <Search onSearch={() => {}} onClear={() => {}} maxLength={35} />
         </Container>
     );
 };
