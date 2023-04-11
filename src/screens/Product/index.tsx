@@ -7,10 +7,10 @@ import { Upload } from "@components/Photo/styles";
 import { ProductProps } from "@components/ProductCard";
 import firestore from "@react-native-firebase/firestore";
 import storage from "@react-native-firebase/storage";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import React, { useEffect, useState } from "react";
-import { Alert, Platform, ScrollView } from "react-native";
+import { Alert, Platform, ScrollView, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ProductNavigationProps } from "src/@types/navigation";
 
@@ -49,6 +49,7 @@ export const Product = () => {
 
     const route = useRoute();
     const { id } = route.params as ProductNavigationProps;
+    const navigaton = useNavigation();
 
     const handlePickerImage = async () => {
         const { status } =
@@ -127,6 +128,23 @@ export const Product = () => {
         setIsLoading(false);
     };
 
+    const handleGoBack = () => {
+        navigaton.goBack();
+    };
+
+    const handleDelete = () => {
+        firestore()
+            .collection("pizzas")
+            .doc(id)
+            .delete()
+            .then(() => {
+                storage()
+                    .ref(photoPath)
+                    .delete()
+                    .then(() => navigaton.navigate("Home"));
+            });
+    };
+
     useEffect(() => {
         if (id) {
             firestore()
@@ -151,20 +169,26 @@ export const Product = () => {
         <Container behavior={Platform.OS === "ios" ? "padding" : undefined}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Header>
-                    <ButtonBack />
+                    <ButtonBack onPress={handleGoBack} />
 
                     <Title>Cadastrar</Title>
 
-                    <TouchableOpacity>
-                        <DeleteLabel>Deletar</DeleteLabel>
-                    </TouchableOpacity>
+                    {id ? (
+                        <TouchableOpacity onPress={handleDelete}>
+                            <DeleteLabel>Deletar</DeleteLabel>
+                        </TouchableOpacity>
+                    ) : (
+                        <View style={{ width: 20 }} />
+                    )}
                 </Header>
 
                 <Upload>
                     <Photo uri={image} />
-                    <PickImageButton onPress={handlePickerImage}>
-                        <PickImageLabel>Carregar</PickImageLabel>
-                    </PickImageButton>
+                    {!id && (
+                        <PickImageButton onPress={handlePickerImage}>
+                            <PickImageLabel>Carregar</PickImageLabel>
+                        </PickImageButton>
+                    )}
                 </Upload>
 
                 <Form>
@@ -208,11 +232,13 @@ export const Product = () => {
                         />
                     </InputGroup>
 
-                    <Button
-                        title="Cadastrar pizza"
-                        isLoading={isLoading}
-                        onPress={handleAdd}
-                    />
+                    {!id && (
+                        <Button
+                            title="Cadastrar Pizza"
+                            isLoading={isLoading}
+                            onPress={handleAdd}
+                        />
+                    )}
                 </Form>
             </ScrollView>
         </Container>
