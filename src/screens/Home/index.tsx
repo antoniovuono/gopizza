@@ -20,7 +20,7 @@ import happyEmoji from "../../assets/happy.png";
 
 export const Home = () => {
     const [pizzas, setPizzas] = useState<ProductProps[]>([]);
-
+    const [search, setSearch] = useState("");
     const { COLORS } = useTheme();
 
     const fetchPizzas = (value: string) => {
@@ -52,6 +52,15 @@ export const Home = () => {
             );
     };
 
+    const handleSearch = () => {
+        fetchPizzas(search);
+    };
+
+    const handleSearchClear = () => {
+        setSearch("");
+        fetchPizzas("");
+    };
+
     useEffect(() => {
         fetchPizzas("");
     }, []);
@@ -74,7 +83,13 @@ export const Home = () => {
                 </TouchableOpacity>
             </Header>
 
-            <Search onSearch={() => {}} onClear={() => {}} maxLength={35} />
+            <Search
+                onChangeText={setSearch}
+                value={search}
+                onSearch={handleSearch}
+                onClear={handleSearchClear}
+                maxLength={35}
+            />
 
             <MenuHeader>
                 <Title>Cardápio</Title>
