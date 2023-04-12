@@ -72,6 +72,16 @@ export const Home = () => {
         navigation.navigate("Product", {});
     };
 
+    const tratativeForNumberOffpizzas = () => {
+        if (pizzas.length === 0) {
+            return "Nenhuma pizza";
+        } else if (pizzas.length === 1) {
+            return `${pizzas.length} pizza`;
+        } else {
+            return `${pizzas.length} pizzas`;
+        }
+    };
+
     useFocusEffect(
         useCallback(() => {
             fetchPizzas("");
@@ -106,7 +116,9 @@ export const Home = () => {
 
             <MenuHeader>
                 <Title>Cardápio</Title>
-                <MenuItemsNumber>32 pizzas</MenuItemsNumber>
+                <MenuItemsNumber>
+                    {tratativeForNumberOffpizzas()}
+                </MenuItemsNumber>
             </MenuHeader>
 
             <FlatList
