@@ -1,4 +1,4 @@
-import { RectButton, TextInput } from "react-native-gesture-handler";
+import { TextInput, TouchableOpacity } from "react-native";
 import { css } from "styled-components";
 import styled from "styled-components/native";
 
@@ -33,7 +33,7 @@ export const ButtonClear = styled.TouchableOpacity`
     margin-right: 7px;
 `;
 
-export const Button = styled(RectButton)`
+export const Button = styled(TouchableOpacity)`
     width: 52px;
     height: 52px;
     align-items: center;
