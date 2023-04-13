@@ -10,8 +10,13 @@ import storage from "@react-native-firebase/storage";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import React, { useEffect, useState } from "react";
-import { Alert, Platform, ScrollView, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+    Alert,
+    Platform,
+    ScrollView,
+    View,
+    TouchableOpacity,
+} from "react-native";
 import { ProductNavigationProps } from "src/@types/navigation";
 
 import {
@@ -124,7 +129,7 @@ export const Product = () => {
             .catch(() =>
                 Alert.alert("Cadastro", "Não foi possível cadastrar a pizza")
             );
-
+        navigaton.navigate("Home");
         setIsLoading(false);
     };
 
@@ -174,7 +179,15 @@ export const Product = () => {
                     <Title>Cadastrar</Title>
 
                     {id ? (
-                        <TouchableOpacity onPress={handleDelete}>
+                        <TouchableOpacity
+                            onPress={handleDelete}
+                            hitSlop={{
+                                top: 25,
+                                bottom: 25,
+                                left: 25,
+                                right: 25,
+                            }}
+                        >
                             <DeleteLabel>Deletar</DeleteLabel>
                         </TouchableOpacity>
                     ) : (
