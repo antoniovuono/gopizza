@@ -27,6 +27,7 @@ module.exports = function (api) {
                         "@hooks": "./src/hooks",
                         "@styles": "./src/styles",
                         "@routes": "./src/routes",
+                        "@utils": "./src/utils",
                     },
                 },
             ],
