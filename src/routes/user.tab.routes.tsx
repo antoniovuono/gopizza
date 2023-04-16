@@ -1,3 +1,4 @@
+import { BottomMenu } from "@components/BottomMenu";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home } from "@screens/Home";
 import { Orders } from "@screens/Orders";
@@ -23,8 +24,28 @@ export const UserTabRoutes = () => {
                 },
             }}
         >
-            <Screen name="Home" component={Home} />
-            <Screen name="Orders" component={Orders} />
+            <Screen
+                name="Home"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <BottomMenu title="Cardápio" color={color} />
+                    ),
+                }}
+            />
+            <Screen
+                name="Orders"
+                component={Orders}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <BottomMenu
+                            title="Pedidos"
+                            color={color}
+                            notifications="4"
+                        />
+                    ),
+                }}
+            />
         </Navigator>
     );
 };
