@@ -1,5 +1,4 @@
-![App Screenshot](.github/appcover.png)
-
+![appcover](https://user-images.githubusercontent.com/7297243/232642955-d0b00be0-99ae-40c5-a309-71279b5c6dd7.png)
 
 # GoPizza
 
