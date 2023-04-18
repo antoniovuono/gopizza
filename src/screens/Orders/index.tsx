@@ -1,11 +1,34 @@
 import { ItemSeparator } from "@components/ItemSeparator";
-import { OrderCard } from "@components/OrderCard";
-import React from "react";
+import { OrderCard, OrderProps } from "@components/OrderCard";
+import { useAuth } from "@hooks/auth";
+import firestore from "@react-native-firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 
 import { Container, Header, Title } from "./styles";
 
 export const Orders = () => {
+    const [orders, setOrders] = useState<OrderProps[]>([]);
+    const { user } = useAuth();
+
+    useEffect(() => {
+        const subscribe = firestore()
+            .collection("orders")
+            .where("waiter_id", "==", user?.id)
+            .onSnapshot((querySnapshot) => {
+                const data = querySnapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        ...doc.data(),
+                    };
+                }) as OrderProps[];
+
+                setOrders(data);
+            });
+
+        return () => subscribe();
+    }, []);
+
     return (
         <Container>
             <Header>
@@ -13,9 +36,11 @@ export const Orders = () => {
             </Header>
 
             <FlatList
-                data={["1", "2", "3"]}
-                keyExtractor={(item) => item}
-                renderItem={({ item, index }) => <OrderCard index={index} />}
+                data={orders}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item, index }) => (
+                    <OrderCard index={index} data={item} />
+                )}
                 numColumns={2}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
