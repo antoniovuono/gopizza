@@ -32,7 +32,8 @@ Complete application to assist Waiters of a Pizzeria. In this App, the Administr
 
 Clone this project: 
 
-``` git clone git@github.com:antoniovuono/gopizza.git
+``` 
+git clone git@github.com:antoniovuono/gopizza.git
 ```
 
 Instalar as bibliotecas:
